@@ -2,7 +2,7 @@
 # GLOBAL flag to make it available to the rest of the project.
 find_package(GTest CONFIG REQUIRED GLOBAL)
 
-if (NOT TARGET GTest::gtest)
+if (NOT TARGET GTest::gtest OR NOT TARGET GTest::gmock)
     message(FATAL_ERROR "GTest::gtest target not defined")
 endif ()
 
@@ -18,7 +18,7 @@ set(CMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST CACHE INTERNAL "")
 add_library(RoughPy_test_harness STATIC src/main.cpp)
 
 
-target_link_libraries(RoughPy_test_harness PUBLIC GTest::gtest)
+target_link_libraries(RoughPy_test_harness PUBLIC GTest::gtest GTest::gmock)
 
 
 
